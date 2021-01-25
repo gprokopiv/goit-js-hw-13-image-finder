@@ -12,9 +12,6 @@ function onSearch(e) {
   
     apiService.query = e.currentTarget.elements.query.value;
   
-    if (apiService.query === '') {
-      return alert('sorry');
-    }
     // loadMoreBtn.show();
     apiService.resetPage();
   clearGalleryContainer();
