@@ -1,30 +1,70 @@
 import './styles.css';
-// import './js/fetchCountries';
-// import './js/countries';
-// import pokemonCardTpl from '../templates/pokemon-card.hbs';
-import galleryItemTpl from './templates/galleryItemTpl.hbs';  
-console.log(galleryItemTpl);
+import galleryItemTpl from './templates/gallery-item.hbs';  
 import getRefs from './js/get-refs';
+
 const refs = getRefs();
 
-import API from'./js/apiService.js';
+import apiService from'./js/apiService.js';
 
-
-// function onClick(event) {
-//     event.preventDefault()
-
-//     if (event.target.nodeName !=='IMG') {
-//       return;
-//     }
-// }
-//   const makeGallery = galleryItems.map(makeGalleryRowMarkUp).join('');
-// galleryContainer.insertAdjacentHTML('afterbegin', makeGallery); 
-
-// galleryContainer.addEventListener('click', onClick);
-
-function makeGalleryItemMarkup(image) {
-    refs.galleryItem.insertAdjacentHTML('beforeend', galleryItemTpl(image));
+refs.searchForm.addEventListener('submit', onSearch);
+function onSearch(e) {
+    e.preventDefault();
+  
+    apiService.query = e.currentTarget.elements.query.value;
+  
+    if (apiService.query === '') {
+      return alert('Введи что-то нормальное');
+    }
+    loadMoreBtn.show();
+    apiService.resetPage();
+  clearGalleryContainer();
+  fetchImages();
+}
+function fetchImages() {
+    loadMoreBtn.disable();
+    apiService.fetchImages().then(images => {
+        appendImageMarkup(images);
+      loadMoreBtn.enable();
+    });
+  }
+  
+  function appendImageMarkup(images) {
+    const markup = galleryItemTpl(images);
+    refs.galleryContainer.insertAdjacentHTML('beforeend', markup);
+}
+  
+  function clearGalleryContainer() {
+    refs.galleryContainer.innerHTML = '';
   }
 
+  galleryContainer.addEventListener('click', onClick);
+  
+  function onClick(event) {
+    event.preventDefault()
 
+    if (event.target.nodeName !=='IMG') {
+      return;
+    }
 
+    modalImage.src = event.target.dataset.source;
+    modalBox.classList.add('is-open');
+    window.addEventListener('keydown', onEscapePress);
+
+  };
+ 
+  function onEscapePress(event) {
+    if (event.code === 'Escape') {
+      onCloseModalBtn();
+    }
+  }
+   
+
+  const closeModalBtn = document.querySelector(
+    '[data-action="close-lightbox"]',
+  );
+  closeModalBtn.addEventListener('click', onCloseModalBtn);
+  function onCloseModalBtn() {
+    window.removeEventListener('keydown', onEscapePress);
+    modalBox.classList.remove('is-open');
+  };
+   

@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <title>Homework 13</title>
 
     
@@ -17,28 +19,34 @@
         autocomplete="off"
         placeholder="Search images..."
       />
-      <button type="submit" class="btn btn-primary mb-2">Search</button>
+      <button type="submit" class="button">Search</button>
     </form>
 
-    <ul class="gallery">        
+    <ul class="gallery js-gallery">        
       <!-- Список <li> с карточками изображений -->
     </ul>
-    <button type="button" class="btn btn-primary button" data-action="load more">
+      <button type="button" class="button is-hidden" data-action="load-more">
        Load more
     </button>
 
-    <!-- <button
-    type="button"
-    class="btn btn-primary button"
-    data-action="load-more" -->
-  >
-    <!-- <span
-      class="spinner-border spinner-border-sm spinner is-hidden"
-      role="status"
-      aria-hidden="true"
-    ></span> -->
+   
+    <!--
+      Модальное окно для полноразмерного изображения
+      Для того чтобы открыть, необходимо добавить на div.lightbox CSS-класс is-open
+    -->
+     <!-- <div class="lightbox js-lightbox">
+      <div class="lightbox-overlay"></div>
 
-    <!-- <span class="label">Показать ещё</span> -->
-  </button>
+      <div class="lightbox-content"> -->
+        <!-- <img class="lightbox-image" src="https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg" alt="Container Haulage Freight" /> -->
+      <!-- </div> -->
+
+      <!-- <button
+        type="button"
+        class="lightbox-button"
+        data-action="close-lightbox"
+      ></button> -->
+    <!-- </div> -->
+ 
   </body>
 </html>
