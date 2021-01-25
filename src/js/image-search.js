@@ -11,7 +11,6 @@ function onSearch(e) {
     e.preventDefault();
   
     apiService.query = e.currentTarget.elements.query.value;
-  
     // loadMoreBtn.show();
     apiService.resetPage();
   clearGalleryContainer();
