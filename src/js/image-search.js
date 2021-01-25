@@ -1,36 +1,52 @@
 // import { error } from './notifications';
-// import './styles.css';
 import galleryItemTpl from '../templates/gallery-item.hbs';  
 import getRefs from './get-refs';
 import apiService from'./apiService.js';
+import 'material-design-icons/iconfont/material-icons.css';
+
 
 const refs = getRefs();
 
 refs.searchForm.addEventListener('submit', onSearch);
+refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
+
 function onSearch(e) {
     e.preventDefault();
-  
+    clearGalleryContainer();
     apiService.query = e.currentTarget.elements.query.value;
-    // loadMoreBtn.show();
     apiService.resetPage();
-  clearGalleryContainer();
-  fetchImages();
-}
-function fetchImages() {
-    // loadMoreBtn.disable();
-    apiService.fetchImages().then(images => {
-        appendImageMarkup(images);
-    //   loadMoreBtn.enable();
-    });
-  }
-  function appendImageMarkup(images) {
-    const markup = galleryItemTpl(images);
-    refs.galleryContainer.insertAdjacentHTML('beforeend', markup);
-}
- 
-  
-  function clearGalleryContainer() {
-    refs.galleryContainer.innerHTML = '';
-  }
+    fetchImages();
+    refs.loadMoreBtn.classList.add('is-hidden');
 
-  
+}
+
+function fetchImages() {
+  apiService
+  .fetchImages()
+  .then(images => {
+    appendImageMarkup(images);
+    refs.loadMoreBtn.classList.remove('is-hidden');
+  })
+  .catch(error => console.warn(error));
+}
+function appendImageMarkup(images) {
+  const markup = galleryItemTpl(images);
+  refs.galleryContainer.insertAdjacentHTML('beforeend', markup);
+}
+
+function clearGalleryContainer() {
+  refs.galleryContainer.innerHTML = '';
+}
+
+function onLoadMoreBtnClick() {
+    apiService.incrementPage();
+    fetchImages();
+
+}
+
+
+
+
+
+
+
