@@ -4,7 +4,6 @@ export default function getRefs() {
       searchForm: document.querySelector('#search-form'),
       galleryContainer: document.querySelector('.js-gallery'),
       loadMoreBtn: document.querySelector('button[data-action="load-more"]'),
-      // loadMoreBtn: document.querySelector('.button'),
 
     //   largeImage: document.querySelector('.lightbox-content'),
     //   modal: document.querySelector('.js-lightbox'),

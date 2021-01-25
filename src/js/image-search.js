@@ -2,7 +2,7 @@
 import galleryItemTpl from '../templates/gallery-item.hbs';  
 import getRefs from './get-refs';
 import apiService from'./apiService.js';
-import 'material-design-icons/iconfont/material-icons.css';
+// import 'material-design-icons/iconfont/material-icons.css';
 
 
 const refs = getRefs();
@@ -27,7 +27,11 @@ function fetchImages() {
     appendImageMarkup(images);
     refs.loadMoreBtn.classList.remove('is-hidden');
   })
-  .catch(error => console.warn(error));
+  .catch(() => {
+    error({
+      text: 'You must enter query parameters!',
+    });
+  });
 }
 function appendImageMarkup(images) {
   const markup = galleryItemTpl(images);
