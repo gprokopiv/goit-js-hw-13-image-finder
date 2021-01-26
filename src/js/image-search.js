@@ -27,11 +27,7 @@ function fetchImages() {
     appendImageMarkup(images);
     refs.loadMoreBtn.classList.remove('is-hidden');
   })
-  .catch(() => {
-    error({
-      text: 'You must enter query parameters!',
-    });
-  });
+ 
 }
 function appendImageMarkup(images) {
   const markup = galleryItemTpl(images);

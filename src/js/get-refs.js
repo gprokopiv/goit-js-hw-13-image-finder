@@ -11,7 +11,15 @@ export default function getRefs() {
     //   overlay: document.querySelector('.lightbox-overlay')
     };
   }
-
+// const refs = {
+//   searchForm: document.querySelector('#search-form'),
+//   galleryContainer: document.querySelector('.js-gallery'),
+//   largeImage: document.querySelector('.lightbox-content'),
+//   modal: document.querySelector('.js-lightbox'),
+//   closeModalBtn: document.querySelector('.lightbox-button'),
+//   overlay: document.querySelector('.lightbox-overlay'),
+// };
+// export default refs;
 
 
 
